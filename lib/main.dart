@@ -106,6 +106,61 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Observer(
+              builder: (_) => Container(
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.primaryContainer,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Column(
+                  children: [
+                    Text(
+                      'Current Theme: ${themeStore.themeName}',
+                      style: Theme.of(context).textTheme.headlineSmall,
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      'Dark mode: ${themeStore.isDarkMode ? "ON" : "OFF"}',
+                      style: Theme.of(context).textTheme.bodyLarge,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 24),
+
+            // Local StatefulWidget state (not using MobX)
+            Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.secondaryContainer,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Column(
+                children: [
+                  Text(
+                    'Messages: $_messageCount',
+                    style: Theme.of(context).textTheme.headlineSmall,
+                  ),
+                  const SizedBox(height: 8),
+                  ElevatedButton(
+                    onPressed: _incrementMessages,
+                    child: const Text('Add Message'),
+                  ),
+                ],
+              ),
+            ),
+
+            const SizedBox(height: 24),
+          ],
+        ),
+      ),
     );
   }
 }
